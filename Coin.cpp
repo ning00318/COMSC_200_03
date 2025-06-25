@@ -9,7 +9,6 @@ Coin::Coin()
 
 void Coin::toss()
 {
-    srand(static_cast<unsigned int>(time(0)));
     int results = rand() % 2;
     if (results == 1)
         sideUp = "heads";
