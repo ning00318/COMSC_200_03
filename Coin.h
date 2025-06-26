@@ -7,7 +7,7 @@ class Coin
 public:
     Coin();
     void toss();
-    std::string getSideUp();
+    std::string getSideUp() const;
 private:
     std::string sideUp;
 };
