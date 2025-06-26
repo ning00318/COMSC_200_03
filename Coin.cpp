@@ -9,10 +9,12 @@ Coin::Coin()
 
 void Coin::toss()
 {
-    int results = rand() % 2;
-    if (results == 1)
+    int result;
+    result = rand() % 2;
+    
+    if (result == 1)
         sideUp = "heads";
-    else if (results == 0)
+    else if (result == 0)
         sideUp = "tails";
 }
 

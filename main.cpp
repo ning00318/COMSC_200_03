@@ -4,8 +4,8 @@
 using namespace std;
 
 void startBalance(double, double);
-void headOrTail(string, string, string);
-void accumulateBalance(double);
+double headOrTail(string, string, string);
+void accumulateBalance(double, double);
 
 int main()
 {
@@ -19,9 +19,22 @@ int main()
     double computerBalance = 0;
 
     startBalance(playerBalance, computerBalance);
-    headOrTail(quatar.getSideUp(), dime.getSideUp(), nickel.getSideUp());
-    headOrTail(quatar.getSideUp(), dime.getSideUp(), nickel.getSideUp());
-    
+
+    do
+    {
+        quatar.toss();
+        dime.toss();
+        nickel.toss();
+        playerBalance = headOrTail(quatar.getSideUp(), dime.getSideUp(), nickel.getSideUp());
+        
+        quatar.toss();
+        dime.toss();
+        nickel.toss();
+        computerBalance = headOrTail(quatar.getSideUp(), dime.getSideUp(), nickel.getSideUp());
+        
+        accumulateBalance(playerBalance, computerBalance);
+    } while (playerBalance < 1 && computerBalance < 1);
+
     return 0;
 }
 void startBalance(double balanceOfPlayer, double balanceOfComputer)
@@ -30,7 +43,7 @@ void startBalance(double balanceOfPlayer, double balanceOfComputer)
     cout << "Your starting balance: $" << balanceOfPlayer << endl;
     cout << "The computer's starting balance: $" << balanceOfComputer << endl << endl;
 }
-void headOrTail(string quatarSide, string dimeSide, string nickelSide)
+double headOrTail(string quatarSide, string dimeSide, string nickelSide)
 {
     static double total = 0;
     if (quatarSide == "heads")
@@ -39,12 +52,12 @@ void headOrTail(string quatarSide, string dimeSide, string nickelSide)
         total += 0.10;
     if (nickelSide == "heads")
         total += 0.05;
-    accumulateBalance(total);
+    return total;
 }
-void accumulateBalance(double sum)
+void accumulateBalance(double playerSum, double computerSum)
 {
     static int round = 1;
     cout << fixed << setprecision(2);
-    cout << "Your balance after round " << round << ": $" << sum << endl;
-    cout << "The computer's balance after round " << round++ << ": $" << sum << endl << endl;
+    cout << "Your balance after round " << round << ": $" << playerSum << endl;
+    cout << "The computer's balance after round " << round++ << ": $" << computerSum << endl << endl;
 }
