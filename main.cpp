@@ -75,21 +75,14 @@ void endBalance(double endOfPlayer, double endOfComputer)
 }
 string results(double player, double computer)
 {
-    if (player > 1 && computer > 1)
-    {
-        if (player == computer)
-            return "Tie! Nobody wins.";
-        else
-            return (player < computer) ? "Congratulations! You won." : "Sorry! The computer won.";
-        
-    }
-    else if (player <= 1 && computer <= 1)
-    {
-        if (player == computer)
-            return "Tie! Nobody wins.";
-        else
-            return (player > computer) ? "Congratulations! You won." : "Sorry! The computer won.";
-    }
+    if (player == computer)
+        return "Tie! Nobody wins.";
+    else if (player >= 1 && computer >= 1)
+        return (player < computer) ? "(1)Congratulations! You won." : "(2)Sorry! The computer won.";
+    else if (player < 1 && computer < 1)
+        return (player > computer) ? "(3)Congratulations! You won." : "(4)Sorry! The computer won.";
+    else if (player >= 1 && computer < 1)
+        return "(5)Congratulations! You won.";
     else
-        return (player > 1 && computer < 1) ? "Congratulations! You won." : "Sorry! The computer won.";
+        return "(6)Sorry! The computer won.";
 }
